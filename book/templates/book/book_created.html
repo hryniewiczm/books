@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="order-info">
+        <h3>Your order</h3>
+        <ul>
+        {% for book in books %}
+            <li>
+            {{ books.author }}x {{ item.product.name }}
+            <span>${{ item.total_price }}</span>
+            </li>
+        {% endfor %}
+        </ul>
+        <p>Total: ${{ cart.get_total_price }}</p>
+    </div>
+
+    <form action="." method="post">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <p><input type="submit" value="Add book"></p>
+    </form>
+{% endblock %}

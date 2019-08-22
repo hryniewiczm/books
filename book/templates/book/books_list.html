@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+
+{% endblock %}
+
+{% block content %}
+    {% for book in object_list %}
+        <p>Book: {{ book.title }}</p>
+        <p>Author: {{ book.authors }}</p>
+        <p>published date: {{ book.published }}</p>
+        <p>ID: {{ book.industryIndentifiers }}</p>
+        <p>Pages: {{ book.pageCount }}</p>
+        <img src="{{ book.imageLinks }}">
+        <p>Lang: {{ book.language }}</p>
+        <hr>
+    {% empty%}
+        <p>Not books yet.</p>
+    {% endfor %}
+{% endblock %}
