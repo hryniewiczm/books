@@ -6,27 +6,13 @@ from .models import Author, Book
 
 
 class BookListView(ListView):
+    queryset = Book.objects.order_by('-publishedDate')
     model = Book
+    paginate_by = 3
     template_name = "book/books_list.html"
 
-# def book_create(request):
-#     book = Book(request)
-#     if request.method == 'POST':
-#         form = BookCreateForm(request.POST)
-#         if form.is_valid():
-#             order = form.save()
-#             for item in book:
-#                 Book.objects.create(order=order,
-#                                         product=item['product'],
-#                                         price=item['price'],
-#                                         quantity=item['quantity'])
-#             # clear the cart
-#             book.clear()
-#             return render(request,
-#                           self.template_name)
-#
-#     else:
-#         form = BookCreateForm()
-#     return render(request,
-#                   'books/book_create.html',
-#                   {'book': book, 'form': form})
+class BookCreateView(CreateView):
+    model = Book
+    fields = ['title', 'authors', 'publishedDate', 'industryIndentifiers', 'pageCount', 'imageLinks', 'language']
+    template_name = "book/book_created.html"
+    success_url = 'book/books_list.html'
