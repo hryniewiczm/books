@@ -16,3 +16,5 @@ class BookCreateView(CreateView):
     fields = ['title', 'authors', 'publishedDate', 'industryIndentifiers', 'pageCount', 'imageLinks', 'language']
     template_name = "book/book_created.html"
     success_url = 'book/books_list.html'
+
+# dsf
